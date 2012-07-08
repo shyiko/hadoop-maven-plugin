@@ -3,7 +3,9 @@
 Overview
 ---------------
 
-Maven Plugin for running Apache Hadoop jobs in pseudo-distributed-mode (default configuration changeable with hmp.hadoopConf property).
+Maven Plugin for running Apache Hadoop jobs in pseudo-distributed-mode (default configuration is changeable with hmp.hadoopConf property).
+
+Verified on Linux and Mac OS X / JDK 1.6.0_33 / Apache Hadoop 0.21.0.
 
 Goals
 ---------------
@@ -16,7 +18,21 @@ Goals
 
 >NOTE: maven-dependency-plugin & maven-jar-plugin are used to assembly job jar. See sample project for details.
 
-Usage
+Quickstart
+---------------
+
+Add following snippet to your pom.xml (adjust <hadoopHome/> if needed) and hit "mvn hadoop:start -Dhmp.autoShutdown=false"
+
+            <plugin>
+                <groupId>com.github.shyiko.hadoop-maven-plugin</groupId>
+                <artifactId>hadoop-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <hadoopHome>${user.home}/hadoop-0.21.0</hadoopHome>
+                </configuration>
+            </plugin>
+
+Sample
 ---------------
 
 See [sample-maven-project](https://github.com/shyiko/hadoop-maven-plugin/tree/master/sample-maven-project).
