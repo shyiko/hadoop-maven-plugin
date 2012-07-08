@@ -18,11 +18,18 @@ package com.github.shyiko.hmp;
 import org.apache.commons.exec.PumpStreamHandler;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * @author <a href="mailto:stanley.shyiko@gmail.com">Stanley Shyiko</a>
  */
 class ExecutionStreamHandler extends PumpStreamHandler {
+
+    /**
+     * Used instead of null as a workaround to NameNode/DataNode freezes on Mac OS X.
+     */
+    private static final NullOutputStream NULL_OUTPUT_STREAM = new NullOutputStream();
 
     public ExecutionStreamHandler(boolean suppressOutput) {
         this(suppressOutput, null);
@@ -30,9 +37,18 @@ class ExecutionStreamHandler extends PumpStreamHandler {
 
     public ExecutionStreamHandler(boolean suppressOutput, String input) {
         super(
-                suppressOutput ? null : System.out,
-                suppressOutput ? null : System.err,
+                suppressOutput ? NULL_OUTPUT_STREAM : System.out,
+                suppressOutput ? NULL_OUTPUT_STREAM : System.err,
                 input == null ? null : new ByteArrayInputStream(input.getBytes())
         );
+    }
+
+    private static class NullOutputStream extends OutputStream {
+
+        public void write(byte[] b, int off, int len) throws IOException {
+        }
+
+        public void write(int b) throws IOException {
+        }
     }
 }

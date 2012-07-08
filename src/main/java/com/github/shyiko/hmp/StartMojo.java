@@ -137,7 +137,7 @@ public class StartMojo extends AbstractHadoopMojo {
         long startTime = System.currentTimeMillis();
         do {
             try {
-                new Socket("localhost", port);
+                new Socket("localhost", port).close();
                 return true;
             } catch (IOException e) {
                 try {
