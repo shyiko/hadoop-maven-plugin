@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hmp.hadoopHome>${user.home}/hadoop-0.21.0</hmp.hadoopHome>
+        <hmp.hadoopHome>${user.home}/hadoop-1.0.2</hmp.hadoopHome>
     </properties>
 
     <build>
@@ -59,8 +59,7 @@
                     <copyFromLocalSource>hadoop/input</copyFromLocalSource>
                     <copyToLocalTarget>hadoop/output</copyToLocalTarget>
                     <jobParameters>-i ${basedir}/hadoop/input -o ${basedir}/hadoop/output</jobParameters>
-                    <!-- hmp.quiet disables console logger for everything but job (default log file location is /tmp/hmp.log)  -->
-                    <quiet>true</quiet>
+                    <!-- hmp.quiet=true disables console logger for everything but job (default log file location is /tmp/hmp.log)  -->
                 </configuration>
             </plugin>
         </plugins>

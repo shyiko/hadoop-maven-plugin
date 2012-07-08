@@ -169,12 +169,24 @@ class HadoopSettings {
         return fsURI.endsWith("/") ? fsURI.substring(0, fsURI.length() - 1) : fsURI;
     }
 
+    public String getMapRedScript() {
+        return resolveFile("bin/mapred", "bin/hadoop");
+    }
+
+    public String getHDFSScript() {
+        return resolveFile("bin/hdfs", "bin/hadoop");
+    }
+
     public String getConf(String key, String defaultValue) {
         String value = getConf(key);
         if (value == null) {
             value = defaultValue;
         }
         return value;
+    }
+
+    private String resolveFile(String executable, String fallback) {
+        return new File(homeDirectory, executable).exists() ? executable : fallback;
     }
 
     public String getConf(String key) {

@@ -78,7 +78,7 @@ public class StartMojo extends AbstractHadoopMojo {
 
     private void formatNameNode(HadoopSettings hadoopSettings) throws MojoFailureException {
         try {
-            executeCommand(hadoopSettings, "bin/hdfs namenode -format", "Y\n");
+            executeCommand(hadoopSettings, hadoopSettings.getHDFSScript() + " namenode -format", "Y\n");
             //https://issues.apache.org/jira/browse/HDFS-107
             //noinspection ResultOfMethodCallIgnored
             String dataNodeDir = hadoopSettings.getConf("dfs.data.dir");
@@ -93,22 +93,22 @@ public class StartMojo extends AbstractHadoopMojo {
     }
 
     private void startHadoop(HadoopSettings hadoopSettings) {
-        startDaemon(hadoopSettings, "NameNode", "bin/hdfs namenode");
+        startDaemon(hadoopSettings, "NameNode", hadoopSettings.getHDFSScript() + " namenode");
         if (nameNodeStartupTimeoutInMilliseconds > 0) {
             waitForDaemonStartup(hadoopSettings, "NameNode", nameNodeStartupTimeoutInMilliseconds,
                     "dfs.http.bindAddress", 50070);
         }
-        startDaemon(hadoopSettings, "DataNode", "bin/hdfs datanode");
+        startDaemon(hadoopSettings, "DataNode", hadoopSettings.getHDFSScript() + " datanode");
         if (dataNodeStartupTimeoutInMilliseconds > 0) {
             waitForDaemonStartup(hadoopSettings, "DataNode", dataNodeStartupTimeoutInMilliseconds,
                     "dfs.datanode.http.bindAddress", 50075);
         }
-        startDaemon(hadoopSettings, "JobTracker", "bin/mapred jobtracker");
+        startDaemon(hadoopSettings, "JobTracker", hadoopSettings.getMapRedScript() + " jobtracker");
         if (jobTrackerStartupTimeoutInMilliseconds > 0) {
             waitForDaemonStartup(hadoopSettings, "JobTracker", jobTrackerStartupTimeoutInMilliseconds,
                     "mapred.job.tracker.http.bindAddress", 50030);
         }
-        startDaemon(hadoopSettings, "TackTracker", "bin/mapred tasktracker");
+        startDaemon(hadoopSettings, "TackTracker", hadoopSettings.getMapRedScript() + " tasktracker");
         if (taskTrackerStartupTimeoutInMilliseconds > 0) {
             waitForDaemonStartup(hadoopSettings, "TaskTracker", taskTrackerStartupTimeoutInMilliseconds,
                     "mapred.task.tracker.http.bindAddress", 50060);

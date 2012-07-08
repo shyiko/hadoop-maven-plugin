@@ -5,7 +5,7 @@ Overview
 
 Maven Plugin for running Apache Hadoop jobs in pseudo-distributed-mode (default configuration is changeable with hmp.hadoopConf property).
 
-Verified on Linux and Mac OS X / JDK 1.6.0_33 / Apache Hadoop 0.21.0.
+Verified on Linux and Mac OS X / JDK 1.6.0_33 / Apache Hadoop 0.21.0 and 1.0.2.
 
 Goals
 ---------------
