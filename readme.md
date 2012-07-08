@@ -17,7 +17,7 @@ Goals
 Usage
 ---------------
 
-See [sample-maven-project].
+See [sample-maven-project](https://github.com/shyiko/hadoop-maven-plugin/tree/master/sample-maven-project).
 
 License
 ---------------
