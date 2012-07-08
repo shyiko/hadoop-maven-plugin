@@ -36,3 +36,4 @@ Usage
     mvn hadoop:copyToLocal
     mvn hadoop:stop # required in order to stop started daemons at #2
 
+>Troubleshooting: see /tmp/hmp.log
