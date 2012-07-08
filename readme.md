@@ -21,7 +21,7 @@ Goals
 Quickstart
 ---------------
 
-Add following snippet to your pom.xml (adjust <hadoopHome/> if needed) and hit "mvn hadoop:start -Dhmp.autoShutdown=false"
+Add following snippet to your pom.xml (adjust &lt;hadoopHome/&gt; if needed) and hit "mvn hadoop:start -Dhmp.autoShutdown=false"
 
             <plugin>
                 <groupId>com.github.shyiko.hadoop-maven-plugin</groupId>
