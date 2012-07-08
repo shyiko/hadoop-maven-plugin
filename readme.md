@@ -14,6 +14,8 @@ Goals
     copyToLocal - copy file/directory form HDFS to local file system
     stop - stop daemons started by 'start' goal (necessary only if -Dhmp.autoShutdown=false been used)
 
+>NOTE: maven-dependency-plugin & maven-jar-plugin are used to assembly job jar. See sample project for details.
+
 Usage
 ---------------
 
