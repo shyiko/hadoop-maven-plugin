@@ -23,19 +23,30 @@ Quickstart
 
 Add following snippet to your pom.xml (adjust &lt;hadoopHome/&gt; if needed) and hit "mvn hadoop:start -Dhmp.autoShutdown=false"
 
-            <plugin>
-                <groupId>com.github.shyiko.hadoop-maven-plugin</groupId>
-                <artifactId>hadoop-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <configuration>
-                    <hadoopHome>${user.home}/hadoop-0.21.0</hadoopHome>
-                </configuration>
-            </plugin>
+    <plugin>
+        <groupId>com.github.shyiko.hadoop-maven-plugin</groupId>
+        <artifactId>hadoop-maven-plugin</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <configuration>
+            <hadoopHome>${user.home}/hadoop-0.21.0</hadoopHome>
+        </configuration>
+    </plugin>
 
 Sample
 ---------------
 
 See [sample-maven-project](https://github.com/shyiko/hadoop-maven-plugin/tree/master/sample-maven-project).
+
+Notes
+---------------
+
+In case you are going to use custom Hadoop conf directory (default one is shown [here](https://github.com/shyiko/hadoop-maven-plugin/tree/master/src/main/resources/pseudo-distributed-mode)), hdfs-site.xml should include a snippet provided below.
+Otherwise, 'mvn hadoop:start hadoop:submitJob' may fail (during hadoop:submitJob goal) due to the DataNode being still unavailable.
+
+    <property>
+        <name>dfs.datanode.socket.write.timeout</name>
+        <value>0</value>
+    </property>
 
 License
 ---------------
