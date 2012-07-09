@@ -51,7 +51,8 @@ public class SubmitJobMojo extends AbstractHadoopMojo {
     protected void execute(HadoopSettings hadoopSettings) throws MojoExecutionException, MojoFailureException {
         this.quiet = jobQuiet;
         try {
-            executeCommand(hadoopSettings, "bin/hadoop jar " + jobJar.getAbsolutePath() + " " + jobParameters);
+            executeCommand(hadoopSettings, "bin/hadoop jar " + jobJar.getAbsolutePath() +
+                    (jobParameters == null ? "" : " " + jobParameters));
         } catch (ExecuteException e) {
             throw new MojoExecutionException("Hadoop Job failed");
         } catch (IOException e) {

@@ -79,6 +79,9 @@ abstract class AbstractHadoopMojo extends AbstractMojo {
 
     protected void executeCommand(HadoopSettings hadoopSettings, String command, String automaticResponseOnPrompt,
                                   boolean bindProcessDestroyerToShutdownHook) throws IOException {
+        if (getLog().isDebugEnabled()) {
+            getLog().debug("Executing " + command);
+        }
         Executor executor = new DefaultExecutor();
         executor.setStreamHandler(new ExecutionStreamHandler(quiet, automaticResponseOnPrompt));
         executor.setWorkingDirectory(hadoopSettings.getHomeDirectory());
