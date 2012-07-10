@@ -1,5 +1,7 @@
 #hadoop-maven-plugin#
 
+Latest release version (available in Maven Central) - 1.0.0.
+
 Overview
 ---------------
 
