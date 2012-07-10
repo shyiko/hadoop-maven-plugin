@@ -6,7 +6,7 @@
 
     <groupId>com.github.shyiko.hadoop-maven-plugin</groupId>
     <artifactId>sample-maven-project</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,7 +53,7 @@
             <plugin>
                 <groupId>com.github.shyiko.hadoop-maven-plugin</groupId>
                 <artifactId>hadoop-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0-SNAPSHOT</version>
                 <configuration>
                     <!-- hmp.hadoopHome provided by <properties/> section -->
                     <copyFromLocalSource>hadoop/input</copyFromLocalSource>
