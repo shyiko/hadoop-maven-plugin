@@ -26,7 +26,7 @@ Add following snippet to your pom.xml (adjust &lt;hadoopHome/&gt; if needed) and
     <plugin>
         <groupId>com.github.shyiko.hadoop-maven-plugin</groupId>
         <artifactId>hadoop-maven-plugin</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
         <configuration>
             <hadoopHome>${user.home}/hadoop-0.21.0</hadoopHome>
         </configuration>
