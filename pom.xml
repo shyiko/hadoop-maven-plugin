@@ -64,7 +64,7 @@
             <artifactId>maven-plugin-descriptor</artifactId>
             <version>2.0</version>
         </dependency>
-        <!-- non-plugin-lifecycle related dependencies -->
+        <!-- project specific dependencies -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-exec</artifactId>
@@ -94,11 +94,53 @@
         <profile>
             <id>default</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <file>
+                    <exists>${java.home}/../lib/tools.jar</exists>
+                </file>
             </activation>
             <properties>
                 <tools.jar.location>${java.home}/../lib/tools.jar</tools.jar.location>
             </properties>
+        </profile>
+        <profile>
+            <id>snapshot</id>
+            <activation>
+                <property>
+                    <name>deploy</name>
+                    <value>snapshot</value>
+                </property>
+            </activation>
+            <build>
+                <defaultGoal>clean deploy</defaultGoal>
+            </build>
+        </profile>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>deploy</name>
+                    <value>release</value>
+                </property>
+            </activation>
+            <build>
+                <defaultGoal>clean release:clean release:prepare release:perform</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
